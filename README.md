@@ -1,3 +1,17 @@
+# Mission Control but no screenshot/home button combo
+
+No more using the D-Pad and pressing the Minus button and suddenly making screenshots or going to the home menu
+
+
+
+
+
+
+# Original Readme
+
+
+
+
 <p align="left">
 <a href="https://github.com/ndeadly/MissionControl/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/ndeadly/MissionControl"></a>
 <a href="https://github.com/ndeadly/MissionControl/releases/latest"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ndeadly/MissionControl"></a>
