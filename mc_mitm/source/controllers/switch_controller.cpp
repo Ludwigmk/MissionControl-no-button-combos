@@ -215,18 +215,9 @@ namespace ams::controller {
     }
 
     void SwitchController::ApplyButtonCombos(SwitchButtonData *buttons) {
-        // if you press the buttons you press the buttons
-        if (buttons->minus && buttons->dpad_down) {
-            buttons->home = 0;
+     // if you press the button you press it
+        if (buttons->minus) {
             buttons->minus = 1;
-            buttons->dpad_down = 1;
-        }
-
-        // if you press the buttons you press the buttons
-        if (buttons->minus && buttons->dpad_up) {
-            buttons->capture = 0;
-            buttons->minus = 1;
-            buttons->dpad_up = 1;
         } 
     }
 
