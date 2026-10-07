@@ -18,23 +18,28 @@
 
 namespace ams::controller {
 
-    class VirtualSpiFlash {
-        public:
-            VirtualSpiFlash() {};
-            ~VirtualSpiFlash();
-            
-            Result Initialize(const char *path);
-            Result Read(int offset, void *data, size_t size);
-            Result Write(int offset, const void *data, size_t size);
-            Result SectorErase(int offset);
-            Result CheckMemoryRegion(int offset, size_t size, bool *is_initialized);
+    enum class SwitchBatteryLevel : u8 {
+        Empty,
+        Critical,
+        Low,
+        Medium,
+        Full
+    };
 
-        private:
-            Result CreateFile(const char *path);
-            Result EnsureMemoryRegion(int offset, const void *data, size_t size);
-            Result EnsureInitialized();
+    struct SwitchBatteryLevelConverter {
 
-            fs::FileHandle m_virtual_memory_file;
+        template <std::integral T>
+        static constexpr SwitchBatteryLevel ConvertValue(T value) {
+            constexpr T divisor = (std::numeric_limits<T>::max() + 1) >> 2;
+            u8 tmp_level = value ? (((value - 1) / divisor) + 1) : 0;
+            return static_cast<SwitchBatteryLevel>(tmp_level);
+        }
+
+        static constexpr SwitchBatteryLevel ConvertPercentage(u8 percentage) {
+            u8 tmp_level = percentage ? (((percentage - 1) / 25) + 1) : 0;
+            return static_cast<SwitchBatteryLevel>(tmp_level);
+        }
+
     };
 
 }

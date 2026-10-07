@@ -18,18 +18,6 @@
 
 namespace ams::controller {
 
-    enum PowerADPadDirection {
-        PowerADPad_N,
-        PowerADPad_NE,
-        PowerADPad_E,
-        PowerADPad_SE,
-        PowerADPad_S,
-        PowerADPad_SW,
-        PowerADPad_W,
-        PowerADPad_NW,
-        PowerADPad_Released = 0x0f
-    };
-
     struct PowerAButtonData {
         u8 dpad   : 4;
         u8 A      : 1;
@@ -74,7 +62,7 @@ namespace ams::controller {
 
             PowerAController(bluetooth::Address address, HardwareID id) : EmulatedSwitchController(address, id) { }
 
-            void ProcessInputData(const bluetooth::HidReport *report) override;
+            virtual void ParseInputReport(const u8 *report_buffer, size_t size) override;
 
         private:
             void MapInputReport0x03(const PowerAReportData *src);

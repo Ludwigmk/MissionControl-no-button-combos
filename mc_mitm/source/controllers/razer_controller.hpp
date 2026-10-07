@@ -18,18 +18,6 @@
 
 namespace ams::controller {
 
-    enum RazerDPadDirection {
-        RazerDPad_N,
-        RazerDPad_NE,
-        RazerDPad_E,
-        RazerDPad_SE,
-        RazerDPad_S,
-        RazerDPad_SW,
-        RazerDPad_W,
-        RazerDPad_NW,
-        RazerDPad_Released
-    };
-
     struct RazerButtonData {
         u8 dpad   : 4;
         u8 A      : 1;
@@ -74,7 +62,7 @@ namespace ams::controller {
 
             RazerController(bluetooth::Address address, HardwareID id) : EmulatedSwitchController(address, id) { }
 
-            void ProcessInputData(const bluetooth::HidReport *report) override;
+            virtual void ParseInputReport(const u8 *report_buffer, size_t size) override;
 
         private:
             void MapInputReport0x01(const RazerReportData *src);
