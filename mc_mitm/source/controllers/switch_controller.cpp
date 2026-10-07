@@ -221,9 +221,6 @@ namespace ams::controller {
         SwitchAnalogStick left_stick = m_left_stick;
         SwitchAnalogStick right_stick = m_right_stick;
 
-        buttons.ApplyCombo(SwitchButton::Home,    DefaultHomeButtonCombo);
-        buttons.ApplyCombo(SwitchButton::Capture, DefaultCaptureButtonCombo);
-
         /* Overwrite report components we wish to modify. */
         auto report_id = static_cast<SwitchHidReportId>(report_buffer[0]);
         switch (report_id) {
